@@ -1,0 +1,145 @@
+/* Design tokens for the Dern-Support repair & support portal.
+   Visual idea: a live circuit-card diagnostic console — every ticket
+   reads like a board the technicians are actively monitoring. */
+:root {
+  --bg: #0B0E13;
+  --bg-soft: #0E1219;
+  --surface: #141822;
+  --surface-raised: #1A2030;
+  --ink: #EDEFF5;
+  --ink-soft: #8B93A7;
+  --ink-faint: #5B6376;
+  --line: #242B38;
+  --line-bright: #353F52;
+
+  --violet: #A669FF;
+  --violet-dark: #7B4FE0;
+  --violet-tint: rgba(166, 105, 255, 0.12);
+  --violet-glow: rgba(166, 105, 255, 0.45);
+
+  --amber: #FF8A3D;
+  --amber-tint: rgba(255, 138, 61, 0.12);
+
+  --green: #00D98B;
+  --green-tint: rgba(0, 217, 139, 0.12);
+
+  --rust: #FF5D6C;
+  --rust-tint: rgba(255, 93, 108, 0.12);
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+
+  --radius: 12px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -20px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 0 1px var(--violet-glow), 0 8px 28px -8px var(--violet-glow);
+}
+
+/* Light theme override, toggled by setting data-theme="light" on <html> */
+:root[data-theme="light"] {
+  --bg: #F4F5F8;
+  --bg-soft: #ECEEF3;
+  --surface: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --ink: #1A1D29;
+  --ink-soft: #5B6376;
+  --ink-faint: #8B93A7;
+  --line: #E1E4EC;
+  --line-bright: #CBD0DC;
+
+  --violet-tint: rgba(123, 79, 224, 0.08);
+  --amber-tint: rgba(255, 138, 61, 0.1);
+  --green-tint: rgba(0, 168, 112, 0.1);
+  --rust-tint: rgba(255, 93, 108, 0.1);
+
+  --shadow-card: 0 1px 2px rgba(20, 24, 34, 0.06), 0 16px 32px -20px rgba(20, 24, 34, 0.18);
+}
+
+:root[data-theme="light"] body {
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(900px 500px at 8% -10%, rgba(166, 105, 255, 0.10), transparent 60%),
+    radial-gradient(700px 500px at 100% 0%, rgba(0, 217, 139, 0.06), transparent 60%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--violet);
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--violet-tint);
+  color: var(--ink);
+}
+
+/* Subtle scrollbar that matches the console aesthetic */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-soft);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-bright);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
+
+/* Visible keyboard focus everywhere, per accessibility floor */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
